@@ -1,0 +1,13 @@
+# Temporary crops & previews
+crop_*.png
+logo_preview.png
+logo_cropped.png
+
+# Operating System files
+Thumbs.db
+ehthumbs.db
+.DS_Store
+
+# Local editor and environment
+.vscode/
+.idea/
