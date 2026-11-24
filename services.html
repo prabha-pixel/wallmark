@@ -291,37 +291,74 @@
     </section>
 
     <!-- =============================================================
-         STICKY INTERACTIVE FILTER & SEARCH BAR
+         STANDALONE SECTION: INTERACTIVE SPECIFICATION & CATALOGUE FINDER
     ============================================================== -->
-    <div class="capabilities-filter-section" id="catalog-controls">
+    <section class="catalog-finder-section" id="catalog-controls">
       <div class="container">
-        <div class="filter-bar-inner">
-          <!-- Search Input -->
-          <div class="search-system-box">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-            <input type="search" class="search-system-input" id="systemSearchInput" placeholder="Search 41 systems — try “glazing”, “ACP”, “railing”…" autocomplete="off" aria-label="Search systems">
+        <!-- Section Header -->
+        <div class="catalog-finder-header text-center">
+          <div class="section-badge-center">
+            <span class="section-badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg>
+              Interactive Specification Finder
+            </span>
           </div>
-
-          <!-- Category Chip Buttons (Jelly Radio Theme) -->
-          <div class="filter-chips-wrap">
-            <button type="button" class="filter-chip is-active" data-division="all"><span class="jelly-radio-dot"></span> All <span class="count-badge">(41)</span></button>
-            <button type="button" class="filter-chip" data-division="curtain-wall"><span class="jelly-radio-dot"></span> Curtain Wall <span class="count-badge">(4)</span></button>
-            <button type="button" class="filter-chip" data-division="glazing"><span class="jelly-radio-dot"></span> Glazing <span class="count-badge">(6)</span></button>
-            <button type="button" class="filter-chip" data-division="frameless"><span class="jelly-radio-dot"></span> Frameless Glass <span class="count-badge">(8)</span></button>
-            <button type="button" class="filter-chip" data-division="cladding"><span class="jelly-radio-dot"></span> Wall Cladding <span class="count-badge">(12)</span></button>
-            <button type="button" class="filter-chip" data-division="steel"><span class="jelly-radio-dot"></span> Structural Steel <span class="count-badge">(3)</span></button>
-            <button type="button" class="filter-chip" data-division="engineering"><span class="jelly-radio-dot"></span> Engineering Services <span class="count-badge">(8)</span></button>
-          </div>
+          <h2 class="catalog-finder-title">Explore All 41 Architectural Systems</h2>
+          <p class="catalog-finder-subtitle">
+            Filter by architectural division or search specifications across our full scope — from unitized curtain walls and structural glazing to ACP cladding, decorative trellises, and PEB steel.
+          </p>
         </div>
 
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 12px;">
-          <div class="filter-status-box">
-            <span style="width: 7px; height: 7px; border-radius: 50%; background: #4ade80; display: inline-block; box-shadow: 0 0 8px #4ade80;"></span>
-            <p id="systemsCountDisplay">Showing <strong>41</strong> of 41 systems</p>
+        <!-- Standalone Architectural Console Card -->
+        <div class="catalog-finder-console">
+          <!-- Top Row: Search Box & Live Counter -->
+          <div class="console-top-row">
+            <div class="search-system-box">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              <input type="search" class="search-system-input" id="systemSearchInput" placeholder="Search 41 systems — try “glazing”, “ACP”, “trellises”, “canopy”…" autocomplete="off" aria-label="Search systems">
+            </div>
+
+            <div class="filter-status-box">
+              <span class="status-live-dot"></span>
+              <p id="systemsCountDisplay">Showing <strong>41</strong> of 41 systems</p>
+            </div>
+          </div>
+
+          <!-- Divider -->
+          <div class="console-divider"></div>
+
+          <!-- Middle Row: Category Chip Buttons (Jelly Radio Theme) -->
+          <div class="console-division-row">
+            <div class="filter-chips-label">
+              <span>Filter by Division:</span>
+            </div>
+            <div class="filter-chips-wrap">
+              <button type="button" class="filter-chip is-active" data-division="all"><span class="jelly-radio-dot"></span> All <span class="count-badge">(41)</span></button>
+              <button type="button" class="filter-chip" data-division="curtain-wall"><span class="jelly-radio-dot"></span> Curtain Wall <span class="count-badge">(4)</span></button>
+              <button type="button" class="filter-chip" data-division="glazing"><span class="jelly-radio-dot"></span> Glazing <span class="count-badge">(6)</span></button>
+              <button type="button" class="filter-chip" data-division="frameless"><span class="jelly-radio-dot"></span> Frameless Glass <span class="count-badge">(8)</span></button>
+              <button type="button" class="filter-chip" data-division="cladding"><span class="jelly-radio-dot"></span> Wall Cladding <span class="count-badge">(12)</span></button>
+              <button type="button" class="filter-chip" data-division="steel"><span class="jelly-radio-dot"></span> Structural Steel <span class="count-badge">(3)</span></button>
+              <button type="button" class="filter-chip" data-division="engineering"><span class="jelly-radio-dot"></span> Engineering Services <span class="count-badge">(8)</span></button>
+            </div>
+          </div>
+
+          <!-- Bottom Row: Popular Searches Shortcuts -->
+          <div class="console-shortcuts-row">
+            <span class="shortcuts-label">Quick Search:</span>
+            <div class="shortcuts-tags">
+              <button type="button" class="shortcut-tag" onclick="quickSearch('Curtain Wall')">Curtain Wall</button>
+              <button type="button" class="shortcut-tag" onclick="quickSearch('Skylights')">Skylights</button>
+              <button type="button" class="shortcut-tag" onclick="quickSearch('ACP')">ACP Cladding</button>
+              <button type="button" class="shortcut-tag" onclick="quickSearch('Spider')">Spider Glazing</button>
+              <button type="button" class="shortcut-tag" onclick="quickSearch('Trellises')">Trellises</button>
+              <button type="button" class="shortcut-tag" onclick="quickSearch('Canopy')">Canopies</button>
+              <button type="button" class="shortcut-tag" onclick="quickSearch('PEB')">PEB Steel</button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
 
     <!-- Search / Filter Fallback: No Results -->
     <div class="container">

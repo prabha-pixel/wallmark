@@ -3045,10 +3045,168 @@ footer.site-footer {
 /* =============================================================
    SERVICES & CAPABILITIES PAGE STYLES (ALL 6 DIVISIONS & 41 SYSTEMS)
 ============================================================== */
+.catalog-finder-section {
+  position: relative;
+  background: #071527;
+  padding: 65px 0 55px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 2px solid rgba(56, 189, 248, 0.3);
+}
+
+.catalog-finder-header {
+  margin-bottom: 30px;
+}
+
+.catalog-finder-header .section-badge-center {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+
+.catalog-finder-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 12px;
+  letter-spacing: -0.02em;
+}
+
+.catalog-finder-subtitle {
+  color: #cbd5e1;
+  font-size: 0.98rem;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.catalog-finder-console {
+  background: #0b1e36;
+  border: 1.5px solid rgba(56, 189, 248, 0.28);
+  border-radius: 20px;
+  padding: 28px 32px;
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.console-top-row {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: stretch;
+}
+
+@media (min-width: 768px) {
+  .console-top-row {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.console-top-row .search-system-box {
+  flex: 1;
+  max-width: 520px;
+}
+
+.console-top-row .filter-status-box {
+  align-self: flex-start;
+  padding: 9px 16px;
+  border-radius: 8px;
+}
+
+@media (min-width: 768px) {
+  .console-top-row .filter-status-box {
+    align-self: center;
+  }
+}
+
+.status-live-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #4ade80;
+  display: inline-block;
+  box-shadow: 0 0 10px #4ade80;
+  animation: pulseDot 2s infinite ease-in-out;
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.55; transform: scale(0.85); }
+}
+
+.console-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  width: 100%;
+}
+
+.console-division-row {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.filter-chips-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.filter-chips-label span {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #94a3b8;
+}
+
+.console-shortcuts-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding-top: 4px;
+}
+
+.shortcuts-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.shortcuts-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.shortcut-tag {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #93c5fd;
+  font-size: 0.76rem;
+  font-weight: 500;
+  padding: 4px 11px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.shortcut-tag:hover {
+  background: #174AB8;
+  color: #ffffff;
+  border-color: #38bdf8;
+  transform: translateY(-1px);
+}
+
 .capabilities-filter-section {
-  position: sticky;
-  top: 72px;
-  z-index: 95;
+  position: relative;
   background: #0b1e36;
   border-bottom: 2px solid rgba(56, 189, 248, 0.25);
   padding: 18px 0;
@@ -3070,9 +3228,15 @@ footer.site-footer {
 }
 
 @media (max-width: 991px) {
-  .capabilities-filter-section {
-    top: 64px;
-    padding: 12px 0 10px;
+  .catalog-finder-section {
+    padding: 45px 0 35px;
+  }
+  .catalog-finder-title {
+    font-size: 1.65rem;
+  }
+  .catalog-finder-console {
+    padding: 20px 18px;
+    border-radius: 14px;
   }
   .filter-bar-inner {
     flex-direction: column;
@@ -3090,9 +3254,9 @@ footer.site-footer {
     padding-bottom: 6px !important;
     scrollbar-width: none !important;
     gap: 8px !important;
-    margin: 0 -15px !important;
-    padding-left: 15px !important;
-    padding-right: 15px !important;
+    margin: 0 -10px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
   }
   .filter-chips-wrap::-webkit-scrollbar {
     display: none;

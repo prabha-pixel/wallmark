@@ -694,6 +694,25 @@ function initServicesFilter() {
     });
   }
 
+  // Global helper for one-click quick search tags in the console
+  window.quickSearch = function(query) {
+    if (searchInput) {
+      searchInput.value = query;
+      searchQuery = query;
+      // Reset division chips to 'all' so query searches all 41 systems
+      chips.forEach(c => c.classList.remove('is-active'));
+      const allChip = document.querySelector('.filter-chip[data-division="all"]');
+      if (allChip) allChip.classList.add('is-active');
+      currentCategory = 'all';
+      applyFilter();
+
+      const consoleEl = document.getElementById('catalog-controls');
+      if (consoleEl) {
+        consoleEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  };
+
   // Handle URL hash on page load (e.g. services.html#curtain-wall)
   if (window.location.hash) {
     const hashId = window.location.hash.substring(1);
