@@ -84,7 +84,7 @@
             </div>
           </li>
           <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
-          <li class="nav-item"><a href="faq.html" class="nav-link">FAQ</a></li>
+          <li class="nav-item"><a href="#faq" class="nav-link">FAQ</a></li>
           <li class="nav-item"><a href="contact.html" class="nav-link active">Contact</a></li>
         </ul>
 
@@ -140,7 +140,12 @@
             </p>
 
             <div class="contact-detail-item">
-              <div class="contact-icon">📍</div>
+              <div class="contact-icon">
+                <svg class="anim-contact-pin" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3" fill="#38bdf8"></circle>
+                </svg>
+              </div>
               <div class="contact-text">
                 <h4>Registered Head Office</h4>
                 <p>Plot No. 1051, Flat No. 2, Ground Floor, I Block, 35th Street, 18th Main Road, Anna Nagar West, Chennai &ndash; 600040, Tamil Nadu, India.</p>
@@ -148,7 +153,11 @@
             </div>
 
             <div class="contact-detail-item">
-              <div class="contact-icon">📞</div>
+              <div class="contact-icon">
+                <svg class="anim-contact-phone" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                </svg>
+              </div>
               <div class="contact-text">
                 <h4>Phone / WhatsApp Direct</h4>
                 <p><a href="tel:+917810074774" style="color: #ffffff; font-weight: 700;">+91 78100 74774</a></p>
@@ -158,9 +167,10 @@
 
             <div class="contact-detail-item">
               <div class="contact-icon">
-                <span class="unique-mail-badge" style="width: 28px; height: 28px;">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline><circle cx="19" cy="8" r="1.5" fill="#307636"></circle></svg>
-                </span>
+                <svg class="anim-contact-mail" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
               </div>
               <div class="contact-text">
                 <h4>Official Engineering Email</h4>
@@ -170,7 +180,12 @@
             </div>
 
             <div class="contact-detail-item">
-              <div class="contact-icon">⏰</div>
+              <div class="contact-icon">
+                <svg class="anim-contact-clock" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14" class="clock-hands"></polyline>
+                </svg>
+              </div>
               <div class="contact-text">
                 <h4>Working Hours</h4>
                 <p>Monday &ndash; Sunday: 8:00 AM &ndash; 8:00 PM</p>
@@ -334,6 +349,201 @@
     </section>
 
     <!-- =============================================================
+         FAQS INTERACTIVE ACCORDION WITH FILTER TABS
+    ============================================================== -->
+    <section class="faq-section" id="faq" style="padding: 85px 0; background: #ffffff;">
+      <div class="container">
+        <div class="section-header" style="text-align: center; margin-bottom: 40px;">
+          <span class="section-badge">Got Questions?</span>
+          <h2>Frequently Asked Questions</h2>
+          <p>Technical and commercial answers for developers, architects, and structural consultants in Chennai.</p>
+        </div>
+
+        <!-- Filter Tabs -->
+        <div class="faq-filter-wrap">
+          <button type="button" class="faq-filter-btn active" data-filter="all">All Questions</button>
+          <button type="button" class="faq-filter-btn" data-filter="engineering">Engineering &amp; Wind Codes</button>
+          <button type="button" class="faq-filter-btn" data-filter="fire-safety">Fire Safety &amp; NBC 2016</button>
+          <button type="button" class="faq-filter-btn" data-filter="warranty">Warranty &amp; AMC</button>
+        </div>
+
+        <div class="faq-wrapper">
+
+          <!-- Q1: General & Engineering Capabilities -->
+          <div class="faq-item" data-category="engineering" id="general">
+            <div class="faq-question">
+              <span>What turnkey services does Wallmark provide as a leading facade and glazing contractor in Chennai?</span>
+              <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer">
+              <p>
+                As a leading <strong>facade and glazing contractor in Chennai</strong>, <strong>Wallmark</strong> delivers complete turnkey architectural envelope solutions across commercial, institutional, and high-rise developments:
+              </p>
+              <ul style="padding-left: 20px; margin: 10px 0; color: #475569;">
+                <li><strong>Engineering &amp; Wind Calculations:</strong> IS 875 (Part 3) coastal wind-load analysis, structural calculations, and complete 3D CAD/BIM shop drawings.</li>
+                <li><strong>Curtain Walls &amp; Glazing:</strong> Unitized, semi-unitized, stick curtain wall systems, spider glazing, architectural canopies, skylights, and frameless glass assemblies.</li>
+                <li><strong>Architectural Cladding:</strong> Class A2 and B1 fire-rated ACP cladding, exterior HPL, stone/granite mechanical dry cladding, and CNC laser-cut decorative aluminium screens.</li>
+                <li><strong>Site Installation &amp; Warranty:</strong> Certified high-rise crane erection and single-source warranty accountability.</li>
+              </ul>
+              <p>We work collaboratively with architects, builders, and developers from initial design conception through final site handover.</p>
+            </div>
+          </div>
+
+          <!-- Q2: Cladding Specifications -->
+          <div class="faq-item" data-category="fire-safety">
+            <div class="faq-question">
+              <span>What ACP cladding specifications and fire-safety grades does Wallmark install in Chennai?</span>
+              <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer">
+              <p>
+                Wallmark installs certified high-performance Aluminium Composite Panel (ACP) systems engineered for Chennai's coastal environment:
+              </p>
+              <ul style="padding-left: 20px; margin: 10px 0; color: #475569;">
+                <li><strong>Fire-Rated Class A2 Mineral Core:</strong> Non-combustible mineral core compliant with NBC 2016 Part 4 for high-rise commercial buildings above 15 meters.</li>
+                <li><strong>Class B1 Fire-Retardant Grade:</strong> Mineral-filled core for low-rise commercial elevations requiring strict fire retardancy.</li>
+                <li><strong>Surface Finish:</strong> High-durability PVDF (Kynar 500) and FEVE fluoropolymer finishes offering 15–20 year color retention against coastal UV and salt-air exposure.</li>
+                <li><strong>CNC Decorative Panels:</strong> Custom laser-cut perforated panels, geometric jaali patterns, and parametric feature screens.</li>
+              </ul>
+              <p>Includes engineered aluminium sub-framing, stainless steel brackets, and Dow Corning structural weather sealants.</p>
+            </div>
+          </div>
+
+          <!-- Q3: Project Scoping & BOQ -->
+          <div class="faq-item" data-category="engineering">
+            <div class="faq-question">
+              <span>How quickly can Wallmark generate an engineering scope and preliminary BOQ?</span>
+              <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer">
+              <p>
+                If architectural CAD drawings or PDF elevations with rough dimensions are provided, our Anna Nagar West engineering desk generates a preliminary itemized BOQ within <strong>24 to 48 hours</strong>. For existing buildings requiring modernization or re-cladding, we conduct a physical site survey in Chennai within 24 hours.
+              </p>
+            </div>
+          </div>
+
+          <!-- Q4: Engineering -->
+          <div class="faq-item" data-category="engineering" id="engineering-faq">
+            <div class="faq-question">
+              <span>How does Wallmark ensure facades withstand Chennai cyclonic winds?</span>
+              <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer">
+              <p>
+                Chennai is categorized under <strong>Zone 5 for Wind Engineering</strong> with a basic wind speed (Vb) of 50 m/s (approx 180–200 km/h) under <strong>IS 875 (Part 3)</strong>. Wallmark performs custom Finite Element Analysis (FEA) for every project, calculating design wind pressure based on building height, terrain category, and coastal proximity.
+              </p>
+              <p>
+                We specify virgin 6063 T6 structural aluminium mullions with moment of inertia (Ixx) calculated to keep maximum deflection below L/175 or 20mm, preventing glass breakage or joint seal rupture during severe cyclones like Vardah or Mandous.
+              </p>
+            </div>
+          </div>
+
+          <!-- Q5: Engineering -->
+          <div class="faq-item" data-category="engineering">
+            <div class="faq-question">
+              <span>What is the difference between Unitized and Semi-Unitized systems?</span>
+              <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer">
+              <p>
+                <strong>Semi-Unitized (Stick) System:</strong> Vertical mullions and horizontal transoms are anchored directly onto the building structure piece by piece on site. Glass panels are then bonded with structural silicone or mechanical toggles. Ideal for buildings up to 6–10 stories.
+              </p>
+              <p>
+                <strong>Unitized System:</strong> Complete 4-sided glazed panels are fabricated, assembled, and sealed in our climate-controlled Anna Nagar factory under cleanroom conditions. Panels are transported to site and craned into position floor by floor. This allows 3x faster erection, zero external scaffolding, and superior airtightness for towers above 10 stories.
+              </p>
+            </div>
+          </div>
+
+          <!-- Q6: Engineering -->
+          <div class="faq-item" data-category="engineering">
+            <div class="faq-question">
+              <span>How do you prevent water leakage during monsoons?</span>
+              <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer">
+              <p>
+                We engineer all facades using the <strong>Pressure-Equalized Rainscreen Principle</strong>. Rather than relying on a single exterior silicone bead, our profiles incorporate a dual-chamber drainage system with continuous EPDM gaskets and baffled weep holes. Any rainwater that penetrates the outer line is channeled safely back out through gravity before reaching the building interior.
+              </p>
+              <p>
+                Every completed project undergoes on-site dynamic water nozzle hose testing following ASTM standards prior to client handover.
+              </p>
+            </div>
+          </div>
+
+          <!-- Q7: Fire Safety -->
+          <div class="faq-item" data-category="fire-safety" id="fire-safety">
+            <div class="faq-question">
+              <span>Are Wallmark ACP panels compliant with Tamil Nadu Fire Services regulations?</span>
+              <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer">
+              <p>
+                Yes, 100%. Wallmark strictly complies with the <strong>National Building Code (NBC 2016 Part 4 - Fire and Life Safety)</strong> and Tamil Nadu Combined Development and Building Rules. We do NOT use cheap flammable polyethylene (LDPE) core panels. For all commercial buildings, we specify certified Class A2 (non-combustible mineral core) or Class B1 (fire-retardant) panels with third-party lab flammability certificates.
+              </p>
+            </div>
+          </div>
+
+          <!-- Q8: Fire Safety -->
+          <div class="faq-item" data-category="fire-safety">
+            <div class="faq-question">
+              <span>What perimeter fire barriers are installed at floor slab edges?</span>
+              <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer">
+              <p>
+                To prevent vertical smoke and flame spread between floors, Wallmark installs <strong>2-hour fire-rated perimeter fire stops</strong>. These consist of high-density mineral wool insulation (minimum 100 kg/m³) retained by galvanized steel back-pans and sealed with elastomeric fire-rated intumescent mastic at every floor slab edge.
+              </p>
+            </div>
+          </div>
+
+          <!-- Q9: Warranty -->
+          <div class="faq-item" data-category="warranty">
+            <div class="faq-question">
+              <span>What warranty do you provide on silicon sealants and finishes?</span>
+              <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer">
+              <p>
+                Wallmark provides comprehensive, manufacturer-backed warranties:
+              </p>
+              <ul style="padding-left: 20px; margin: 10px 0; color: #475569;">
+                <li><strong>Structural Silicone Sealants:</strong> 10-year direct warranty from Dow Corning / Sika against adhesive or cohesive failure.</li>
+                <li><strong>ACP PVDF Coating:</strong> 20-year warranty on Kynar 500 / Hylar 5000 fluoropolymer finishes against chalking and color fading.</li>
+                <li><strong>Workmanship &amp; Weatherproofing:</strong> 5-year Wallmark turnkey contractor warranty against water leaks and joint detachment.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Q10: Warranty -->
+          <div class="faq-item" data-category="warranty">
+            <div class="faq-question">
+              <span>Does Wallmark offer Annual Maintenance Contracts (AMC) and facade cleaning?</span>
+              <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer">
+              <p>
+                Yes. We offer scheduled AMC services including bi-annual structural sealant condition audits, drone thermography leak inspections, drainage weep-hole unclogging, and robotic or cradle-assisted facade glass cleaning across Chennai.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Still have questions box -->
+        <div style="margin-top: 60px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 40px; text-align: center;">
+          <h3 style="font-size: 1.8rem; font-weight: 800; color: #0b1e36; margin-bottom: 10px;">Have a Question Not Answered Here?</h3>
+          <p style="color: #64748b; font-size: 1rem; max-width: 600px; margin: 0 auto 25px; line-height: 1.6;">
+            Speak directly with our senior facade engineering team in Anna Nagar West, Chennai.
+          </p>
+          <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
+            <a href="tel:+917810074774" class="btn btn-primary">Call +91 78100 74774 &rarr;</a>
+            <button type="button" class="btn btn-outline" onclick="openQuoteModal()">Submit an Inquiry &rarr;</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================================
          FAST QUOTATION CTA BANNER
     ============================================================== -->
     <section style="background: #0b1e36; color: #ffffff; padding: 70px 0;">
@@ -402,7 +612,7 @@
             <li><a href="about.html">About Company</a></li>
             <li><a href="services.html">Services &amp; Systems</a></li>
             <li><a href="blog.html">Technical Blog</a></li>
-            <li><a href="faq.html">Frequently Asked Questions</a></li>
+            <li><a href="#faq">Frequently Asked Questions</a></li>
             <li><a href="contact.html">Contact Us</a></li>
           </ul>
         </div>
