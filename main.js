@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initWindLoadAdvisor();
   initDockChat();
   initServicesFilter();
+  initCountUpStats();
 });
 
 /* =============================================================
@@ -724,4 +725,89 @@ function initServicesFilter() {
       applyFilter();
     }
   }
+}
+
+/* =============================================================
+   8. STATS COUNT-UP ANIMATION (SMOOTH INTERSECTION OBSERVER)
+============================================================== */
+function initCountUpStats() {
+  const statStrips = document.querySelectorAll('.market-stats-strip, [data-stats-strip]');
+  if (statStrips.length === 0) return;
+
+  statStrips.forEach(strip => {
+    const counters = strip.querySelectorAll('.stat-counter');
+    if (counters.length === 0) return;
+
+    // Initialize with zero so count-up begins from zero on scroll
+    counters.forEach(el => {
+      const decimals = parseInt(el.getAttribute('data-decimals') || '0', 10);
+      const suffix = el.getAttribute('data-suffix') || '';
+      const prefix = el.getAttribute('data-prefix') || '';
+      const isOrdinal = el.getAttribute('data-type') === 'ordinal';
+      el.textContent = isOrdinal ? '0' : `${prefix}${(0).toFixed(decimals)}${suffix}`;
+    });
+
+    let animated = false;
+
+    const animateStrip = () => {
+      if (animated) return;
+      animated = true;
+
+      counters.forEach(el => {
+        const target = parseFloat(el.getAttribute('data-target'));
+        const decimals = parseInt(el.getAttribute('data-decimals') || '0', 10);
+        const suffix = el.getAttribute('data-suffix') || '';
+        const prefix = el.getAttribute('data-prefix') || '';
+        const isOrdinal = el.getAttribute('data-type') === 'ordinal';
+        const duration = 2000;
+        const startTime = performance.now();
+
+        const tick = (now) => {
+          const elapsed = now - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          // Cubic ease-out: brisk start and silky-smooth landing
+          const ease = 1 - Math.pow(1 - progress, 3);
+          const current = target * ease;
+
+          if (isOrdinal) {
+            if (progress < 0.45) {
+              el.textContent = '0';
+            } else {
+              el.textContent = `${prefix}${Math.round(current)}${suffix}`;
+            }
+          } else {
+            el.textContent = `${prefix}${current.toFixed(decimals)}${suffix}`;
+          }
+
+          if (progress < 1) {
+            requestAnimationFrame(tick);
+          } else {
+            el.textContent = `${prefix}${target.toFixed(decimals)}${suffix}`;
+            const parent = el.closest('.market-stat-item');
+            if (parent) parent.classList.add('is-counted');
+          }
+        };
+
+        requestAnimationFrame(tick);
+      });
+    };
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            animateStrip();
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.2,
+        rootMargin: '0px 0px -40px 0px'
+      });
+
+      observer.observe(strip);
+    } else {
+      animateStrip();
+    }
+  });
 }
