@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initDockChat();
   initServicesFilter();
   initCountUpStats();
+  initOppositeDirectionReveals();
 });
 
 /* =============================================================
@@ -810,4 +811,72 @@ function initCountUpStats() {
       animateStrip();
     }
   });
+}
+
+/* =============================================================
+   10. OPPOSITE DIRECTION REVEAL ANIMATIONS FOR ALL BOXES
+   Automatically assigns alternating left/right reveal animations
+   to card grids across the entire site with zero mobile shake
+============================================================== */
+function initOppositeDirectionReveals() {
+  const containerSelectors = [
+    '.division-overview-grid',
+    '.divisions-grid',
+    '.systems-grid',
+    '.responsive-two-col',
+    '.responsive-three-col',
+    '.responsive-four-col',
+    '.drivers-grid',
+    '.roadmap-rows',
+    '.contact-cards-grid',
+    '.stats-grid',
+    '.values-grid',
+    '.pillars-grid'
+  ];
+
+  const allContainers = document.querySelectorAll(containerSelectors.join(', '));
+  const elementsToObserve = [];
+
+  allContainers.forEach((container) => {
+    // Ensure parent container clips horizontal overflow
+    container.style.overflowX = 'clip';
+    
+    // Select direct child cards or boxes
+    const items = Array.from(container.children).filter(el => {
+      const tag = el.tagName.toLowerCase();
+      return tag === 'div' || tag === 'a' || tag === 'article';
+    });
+
+    items.forEach((item, index) => {
+      if (index % 2 === 0) {
+        item.classList.add('reveal-box-left');
+      } else {
+        item.classList.add('reveal-box-right');
+      }
+      elementsToObserve.push(item);
+    });
+  });
+
+  if ('IntersectionObserver' in window) {
+    const revealObserver = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-revealed');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.12,
+      rootMargin: '0px 0px -30px 0px'
+    });
+
+    elementsToObserve.forEach(el => revealObserver.observe(el));
+  } else {
+    elementsToObserve.forEach(el => el.classList.add('is-revealed'));
+  }
+
+  // Safety fallback: reveal everything after 1.8s in case user is fast-scrolling or offline
+  setTimeout(() => {
+    elementsToObserve.forEach(el => el.classList.add('is-revealed'));
+  }, 1800);
 }
