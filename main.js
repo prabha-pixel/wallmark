@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initDockChat();
   initServicesFilter();
   initCountUpStats();
+  initDivisionsOppositeReveal();
 });
 
 /* =============================================================
@@ -810,4 +811,45 @@ function initCountUpStats() {
       animateStrip();
     }
   });
+}
+
+/* =============================================================
+   10. OPPOSITE DIRECTION REVEAL ANIMATION (SIX DIVISIONS GRID)
+   Applies alternating left/right reveal animations strictly to
+   the Six Divisions cards on the Home page
+============================================================== */
+function initDivisionsOppositeReveal() {
+  const divisionCards = document.querySelectorAll('.divisions-grid .division-card');
+  if (divisionCards.length === 0) return;
+
+  divisionCards.forEach((card, index) => {
+    if (index % 2 === 0) {
+      card.classList.add('division-reveal-left');
+    } else {
+      card.classList.add('division-reveal-right');
+    }
+  });
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-revealed');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.12,
+      rootMargin: '0px 0px -30px 0px'
+    });
+
+    divisionCards.forEach(card => observer.observe(card));
+  } else {
+    divisionCards.forEach(card => card.classList.add('is-revealed'));
+  }
+
+  // Fallback so cards never remain hidden
+  setTimeout(() => {
+    divisionCards.forEach(card => card.classList.add('is-revealed'));
+  }, 1800);
 }
