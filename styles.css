@@ -4362,50 +4362,9 @@ footer.site-footer {
 }
 
 /* =============================================================
-   OPPOSITE DIRECTION REVEAL ANIMATIONS FOR ALL BOXES
-============================================================== */
-.reveal-box-left {
-  opacity: 0;
-  transform: translate3d(-35px, 0, 0);
-  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
-}
-
-.reveal-box-right {
-  opacity: 0;
-  transform: translate3d(35px, 0, 0);
-  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
-}
-
-.reveal-box-left.is-revealed,
-.reveal-box-right.is-revealed {
-  opacity: 1;
-  transform: translate3d(0, 0, 0);
-}
-
-@media (max-width: 768px) {
-  /* On mobile, subtle opposite nudge so it NEVER causes screen shaking */
-  .reveal-box-left {
-    transform: translate3d(-12px, 0, 0);
-  }
-  .reveal-box-right {
-    transform: translate3d(12px, 0, 0);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .reveal-box-left,
-  .reveal-box-right {
-    opacity: 1 !important;
-    transform: none !important;
-    transition: none !important;
-  }
-}
-
-/* =============================================================
    STRICT ZERO-SHAKE MOBILE RESPONSIVE RULES
    Guarantees 100% stable vertical scrolling with ZERO side-to-side shake
+   Preserves original 1240px container width on desktop
 ============================================================== */
 html, body {
   overflow-x: hidden !important;
@@ -4416,21 +4375,25 @@ html, body {
   -webkit-overflow-scrolling: touch;
 }
 
-body > * {
-  max-width: 100% !important;
+.container {
+  width: 100%;
+  max-width: 1240px !important;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
-.container,
-.nav-container,
+.nav-container {
+  max-width: 1240px !important;
+  margin: 0 auto;
+}
+
+section,
+main,
 .hero,
 .site-header,
-.site-footer,
-section,
-main {
-  width: 100% !important;
-  max-width: 100% !important;
-  box-sizing: border-box !important;
-  overflow-x: clip !important;
+.site-footer {
+  width: 100%;
+  overflow-x: clip;
 }
 
 @media (max-width: 768px) {
