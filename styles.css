@@ -4406,47 +4406,97 @@ main,
 }
 
 /* =============================================================
-   OPPOSITE DIRECTION REVEAL ANIMATION (SIX DIVISIONS GRID ONLY)
+   WALLMARKFACADES.COM LIVE BOX ANIMATIONS
+   1. Directional Scroll Reveal ([data-rv="left"] / [data-rv="right"])
+   2. 3D Mouse-Tracking Tilt & Radial Glare Overlay (.tilt-3d)
 ============================================================== */
-.divisions-grid {
+.divisions-grid,
+.why-grid,
+.systems-grid,
+.drivers-grid,
+.responsive-two-col,
+.responsive-three-col,
+.responsive-four-col {
   overflow-x: clip;
 }
 
-.division-card.division-reveal-left {
+[data-rv] {
   opacity: 0;
-  transform: translate3d(-40px, 0, 0);
-  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translate3d(0, 30px, 0);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 1.05s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 
-.division-card.division-reveal-right {
+[data-rv="left"] {
   opacity: 0;
-  transform: translate3d(40px, 0, 0);
-  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translate3d(-90px, 0, 0) scale(0.96);
+  transition: opacity 1.1s cubic-bezier(0.16, 1, 0.3, 1), transform 1.15s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 
-.division-card.division-reveal-left.is-revealed,
-.division-card.division-reveal-right.is-revealed {
+[data-rv="right"] {
+  opacity: 0;
+  transform: translate3d(90px, 0, 0) scale(0.96);
+  transition: opacity 1.1s cubic-bezier(0.16, 1, 0.3, 1), transform 1.15s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+[data-rv="scale"] {
+  opacity: 0;
+  transform: scale(0.92) translate3d(0, 16px, 0);
+  transition: opacity 0.95s cubic-bezier(0.16, 1, 0.3, 1), transform 1.1s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+[data-rv].in {
   opacity: 1;
-  transform: translate3d(0, 0, 0);
+  transform: translateZ(0) scale(1);
+}
+
+/* 3D Tilt Card & Glare Overlay (exact match to wallmarkfacades.com) */
+.tilt-3d {
+  position: relative;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.tilt-3d:hover {
+  box-shadow: 0 24px 55px -30px rgba(2, 48, 159, 0.28);
+  border-color: #174AB8;
+}
+
+.glare-overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  z-index: 10;
+  opacity: 0;
 }
 
 @media (max-width: 768px) {
-  .division-card.division-reveal-left {
-    transform: translate3d(-14px, 0, 0);
+  [data-rv="left"] {
+    transform: translate3d(-16px, 0, 0) scale(0.98);
   }
-  .division-card.division-reveal-right {
-    transform: translate3d(14px, 0, 0);
+  [data-rv="right"] {
+    transform: translate3d(16px, 0, 0) scale(0.98);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .division-card.division-reveal-left,
-  .division-card.division-reveal-right {
+  [data-rv],
+  [data-rv="left"],
+  [data-rv="right"],
+  [data-rv="scale"] {
     opacity: 1 !important;
     transform: none !important;
     transition: none !important;
+  }
+  .tilt-3d {
+    transform: none !important;
   }
 }
 

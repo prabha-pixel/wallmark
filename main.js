@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initDockChat();
   initServicesFilter();
   initCountUpStats();
-  initDivisionsOppositeReveal();
+  initWallmarkLiveBoxAnimations();
 });
 
 /* =============================================================
@@ -814,42 +814,123 @@ function initCountUpStats() {
 }
 
 /* =============================================================
-   10. OPPOSITE DIRECTION REVEAL ANIMATION (SIX DIVISIONS GRID)
-   Applies alternating left/right reveal animations strictly to
-   the Six Divisions cards on the Home page
+   10. WALLMARKFACADES.COM LIVE BOX ANIMATIONS
+   Exact match to live site:
+   - Directional scroll reveal ([data-rv="left"] / [data-rv="right"])
+   - 3D mouse-tracking tilt + radial glare overlay (.tilt-3d)
 ============================================================== */
-function initDivisionsOppositeReveal() {
-  const divisionCards = document.querySelectorAll('.divisions-grid .division-card');
-  if (divisionCards.length === 0) return;
+function initWallmarkLiveBoxAnimations() {
+  const gridSelectors = [
+    '.divisions-grid',
+    '.why-grid',
+    '.drivers-grid',
+    '.division-overview-grid',
+    '.systems-grid',
+    '.responsive-four-col',
+    '.responsive-three-col',
+    '.responsive-two-col'
+  ];
 
-  divisionCards.forEach((card, index) => {
-    if (index % 2 === 0) {
-      card.classList.add('division-reveal-left');
-    } else {
-      card.classList.add('division-reveal-right');
-    }
+  const revealTargets = [];
+
+  document.querySelectorAll(gridSelectors.join(', ')).forEach((grid) => {
+    const boxes = Array.from(grid.children).filter(el => {
+      const tag = el.tagName.toLowerCase();
+      return tag === 'div' || tag === 'a' || tag === 'article';
+    });
+
+    boxes.forEach((box, idx) => {
+      if (!box.hasAttribute('data-rv')) {
+        box.setAttribute('data-rv', idx % 2 === 0 ? 'left' : 'right');
+      }
+      revealTargets.push(box);
+    });
   });
 
-  if ('IntersectionObserver' in window) {
-    const observer = new IntersectionObserver((entries, obs) => {
+  if ('IntersectionObserver' in window && revealTargets.length > 0) {
+    const rvObserver = new IntersectionObserver((entries, obs) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('is-revealed');
+          entry.target.classList.add('in');
           obs.unobserve(entry.target);
         }
       });
     }, {
-      threshold: 0.12,
+      threshold: 0.1,
       rootMargin: '0px 0px -30px 0px'
     });
 
-    divisionCards.forEach(card => observer.observe(card));
+    revealTargets.forEach(el => rvObserver.observe(el));
   } else {
-    divisionCards.forEach(card => card.classList.add('is-revealed'));
+    revealTargets.forEach(el => el.classList.add('in'));
   }
 
-  // Fallback so cards never remain hidden
+  // Fallback so boxes never stay hidden
   setTimeout(() => {
-    divisionCards.forEach(card => card.classList.add('is-revealed'));
+    revealTargets.forEach(el => el.classList.add('in'));
   }, 1800);
+
+  // 3D Tilt & Radial Glare (Desktop non-touch & non-reduced-motion)
+  const isTouch = window.matchMedia('(pointer: coarse)').matches;
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (isTouch || reducedMotion) return;
+
+  const tiltBoxes = document.querySelectorAll('.division-card, .why-card, .driver-card, .division-overview-card, .system-card, .partner-card');
+  const maxTilt = 10;
+  const scale = 1.025;
+  const perspective = 1000;
+  const speed = 500;
+
+  tiltBoxes.forEach((card) => {
+    card.classList.add('tilt-3d');
+
+    // Add glare-overlay element if not already present
+    let glare = card.querySelector('.glare-overlay');
+    if (!glare) {
+      glare = document.createElement('div');
+      glare.className = 'glare-overlay';
+      glare.setAttribute('aria-hidden', 'true');
+      card.appendChild(glare);
+    }
+
+    let rafId = null;
+    let rect = null;
+
+    card.addEventListener('mouseenter', () => {
+      rect = card.getBoundingClientRect();
+    });
+
+    card.addEventListener('mousemove', (e) => {
+      if (!rect) rect = card.getBoundingClientRect();
+      if (rafId) cancelAnimationFrame(rafId);
+
+      rafId = requestAnimationFrame(() => {
+        if (!rect || !rect.width || !rect.height) return;
+        const xNorm = (e.clientX - rect.left) / rect.width;
+        const yNorm = (e.clientY - rect.top) / rect.height;
+        const rotX = ((0.5 - yNorm) * maxTilt).toFixed(2);
+        const rotY = ((xNorm - 0.5) * maxTilt).toFixed(2);
+
+        card.style.transform = `perspective(${perspective}px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale3d(${scale}, ${scale}, ${scale})`;
+        card.style.transformStyle = 'preserve-3d';
+        card.style.transition = 'transform 0.1s ease-out';
+
+        const gx = (xNorm * 100).toFixed(1);
+        const gy = (yNorm * 100).toFixed(1);
+        glare.style.opacity = '0.35';
+        glare.style.background = `radial-gradient(circle at ${gx}% ${gy}%, rgba(255,255,255,0.45) 0%, transparent 65%)`;
+        glare.style.transition = 'opacity 0.2s ease-out';
+      });
+    }, { passive: true });
+
+    card.addEventListener('mouseleave', () => {
+      rect = null;
+      if (rafId) cancelAnimationFrame(rafId);
+      card.style.transform = `perspective(${perspective}px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+      card.style.transformStyle = 'preserve-3d';
+      card.style.transition = `transform ${speed}ms cubic-bezier(0.16, 1, 0.3, 1)`;
+      glare.style.opacity = '0';
+      glare.style.transition = `opacity ${speed}ms ease-out`;
+    });
+  });
 }
