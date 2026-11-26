@@ -4612,12 +4612,15 @@ main,
   box-shadow: 0 16px 36px rgba(11, 30, 54, 0.14);
   border: 4px solid #ffffff;
   background: #ffffff;
-  flex: 1;
+  flex: 0 0 auto;
 }
 
 .overview-image-wrap img {
-  max-height: 235px;
-  min-height: 190px;
+  width: 100%;
+  height: auto !important;
+  max-height: none !important;
+  min-height: 0 !important;
+  display: block;
 }
 
 .overview-col-right .overview-floating-badge {
@@ -4629,8 +4632,6 @@ main,
     grid-template-columns: 1fr !important;
   }
   .overview-image-wrap img {
-    min-height: 190px !important;
-    max-height: 250px !important;
     height: auto !important;
   }
 }
@@ -4736,6 +4737,73 @@ main,
 
 .systems-grid .system-card:hover .system-card-img-wrap img {
   transform: scale(1.10) !important;
+}
+
+/* =============================================================
+   FOOTER CIRCULAR SOCIAL ICONS (WHATSAPP, LINKEDIN, IG, FB)
+============================================================== */
+.footer-social-links {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.footer-social-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+  text-decoration: none;
+  position: relative;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+              background 0.3s ease,
+              border-color 0.3s ease,
+              box-shadow 0.35s ease;
+}
+
+.footer-social-btn svg {
+  width: 19px;
+  height: 19px;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.footer-social-btn:hover {
+  transform: translateY(-5px) scale(1.1);
+  color: #ffffff;
+}
+
+.footer-social-btn:hover svg {
+  transform: scale(1.12) rotate(-6deg);
+}
+
+.footer-social-btn.social-wa:hover {
+  background: #25D366;
+  border-color: #25D366;
+  box-shadow: 0 10px 22px rgba(37, 211, 102, 0.42);
+}
+
+.footer-social-btn.social-li:hover {
+  background: #0A66C2;
+  border-color: #0A66C2;
+  box-shadow: 0 10px 22px rgba(10, 102, 194, 0.45);
+}
+
+.footer-social-btn.social-ig:hover {
+  background: #E1306C;
+  border-color: #E1306C;
+  box-shadow: 0 10px 22px rgba(225, 48, 108, 0.45);
+}
+
+.footer-social-btn.social-fb:hover {
+  background: #1877F2;
+  border-color: #1877F2;
+  box-shadow: 0 10px 22px rgba(24, 119, 242, 0.45);
 }
 
 /* Staggered timing for Divisions left & right columns */
