@@ -606,7 +606,7 @@ button[type="submit"]:active,
 .hero {
   position: relative;
   background: linear-gradient(rgba(11, 30, 54, 0.82), rgba(11, 30, 54, 0.82)),
-              url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=2200&q=85') center right / cover no-repeat;
+              url('images/facade-installation-companies.webp') center right / cover no-repeat;
   color: var(--white);
   padding: 95px 0 105px;
   text-align: left;
@@ -718,7 +718,7 @@ button[type="submit"]:active,
 -------------------------------------------------------------- */
 .page-hero {
   background: linear-gradient(rgba(11, 30, 54, 0.88), rgba(11, 30, 54, 0.88)),
-              url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=2200&q=85') center right / cover no-repeat;
+              url('images/facade-installation-companies.webp') center right / cover no-repeat;
   color: var(--white);
   padding: 65px 0 75px;
 }
@@ -4591,10 +4591,10 @@ main,
 }
 
 /* =============================================================
-   OVERVIEW SPLIT GRID: BIGGER IMAGE + PARALLEL CERTIFIED BADGE
+   OVERVIEW SPLIT GRID: COMPACT SITE-ERECTION IMAGE + PARALLEL BADGE
 ============================================================== */
 .overview-split-grid {
-  grid-template-columns: 0.88fr 1.12fr !important;
+  grid-template-columns: 1.05fr 0.95fr !important;
   align-items: stretch !important;
   gap: 42px !important;
 }
@@ -4615,6 +4615,11 @@ main,
   flex: 1;
 }
 
+.overview-image-wrap img {
+  max-height: 310px;
+  min-height: 250px;
+}
+
 .overview-col-right .overview-floating-badge {
   margin-top: 16px;
 }
@@ -4624,8 +4629,56 @@ main,
     grid-template-columns: 1fr !important;
   }
   .overview-image-wrap img {
-    min-height: 240px !important;
+    min-height: 220px !important;
+    max-height: none !important;
     height: auto !important;
+  }
+}
+
+/* =============================================================
+   ARCHITECTURAL REFLECTIVE GLAZING EFFECT (IMAGE 2 & IMAGE 3)
+============================================================== */
+.glazing-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.glazing-effect::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -90%;
+  width: 55%;
+  height: 200%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.06) 20%,
+    rgba(255, 255, 255, 0.45) 50%,
+    rgba(56, 189, 248, 0.35) 75%,
+    transparent 100%
+  );
+  transform: rotate(28deg);
+  pointer-events: none;
+  animation: architecturalGlazingSheen 5.5s ease-in-out infinite;
+  z-index: 2;
+}
+
+@keyframes architecturalGlazingSheen {
+  0% {
+    left: -90%;
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  45% {
+    left: 130%;
+    opacity: 1;
+  }
+  50%, 100% {
+    left: 130%;
+    opacity: 0;
   }
 }
 
