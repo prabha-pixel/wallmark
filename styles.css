@@ -4591,12 +4591,12 @@ main,
 }
 
 /* =============================================================
-   OVERVIEW SPLIT GRID: COMPACT SITE-ERECTION IMAGE + PARALLEL BADGE
+   OVERVIEW SPLIT GRID: EVEN SMALLER SITE-ERECTION IMAGE + PARALLEL BADGE
 ============================================================== */
 .overview-split-grid {
-  grid-template-columns: 1.05fr 0.95fr !important;
+  grid-template-columns: 1.18fr 0.82fr !important;
   align-items: stretch !important;
-  gap: 42px !important;
+  gap: 40px !important;
 }
 
 .overview-col-left,
@@ -4616,8 +4616,8 @@ main,
 }
 
 .overview-image-wrap img {
-  max-height: 310px;
-  min-height: 250px;
+  max-height: 235px;
+  min-height: 190px;
 }
 
 .overview-col-right .overview-floating-badge {
@@ -4629,14 +4629,14 @@ main,
     grid-template-columns: 1fr !important;
   }
   .overview-image-wrap img {
-    min-height: 220px !important;
-    max-height: none !important;
+    min-height: 190px !important;
+    max-height: 250px !important;
     height: auto !important;
   }
 }
 
 /* =============================================================
-   ARCHITECTURAL REFLECTIVE GLAZING EFFECT (IMAGE 2 & IMAGE 3)
+   ARCHITECTURAL REFLECTIVE GLAZING EFFECT (HOME & SERVICES HERO)
 ============================================================== */
 .glazing-effect {
   position: relative;
@@ -4653,15 +4653,15 @@ main,
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(255, 255, 255, 0.06) 20%,
-    rgba(255, 255, 255, 0.45) 50%,
-    rgba(56, 189, 248, 0.35) 75%,
+    rgba(255, 255, 255, 0.08) 20%,
+    rgba(255, 255, 255, 0.55) 50%,
+    rgba(56, 189, 248, 0.40) 75%,
     transparent 100%
   );
   transform: rotate(28deg);
   pointer-events: none;
-  animation: architecturalGlazingSheen 5.5s ease-in-out infinite;
-  z-index: 2;
+  animation: architecturalGlazingSheen 4.5s ease-in-out infinite;
+  z-index: 4;
 }
 
 @keyframes architecturalGlazingSheen {
@@ -4680,6 +4680,62 @@ main,
     left: 130%;
     opacity: 0;
   }
+}
+
+/* =============================================================
+   HOLO CARD & IMAGE ZOOM-IN EFFECT FOR ALL SERVICES CARDS
+============================================================== */
+.systems-grid .system-card {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.35s ease;
+}
+
+.systems-grid .system-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 6;
+  opacity: 0;
+  background: linear-gradient(
+    125deg,
+    transparent 15%,
+    rgba(56, 189, 248, 0.22) 32%,
+    rgba(168, 85, 247, 0.18) 46%,
+    rgba(74, 222, 128, 0.18) 60%,
+    rgba(255, 255, 255, 0.38) 72%,
+    transparent 88%
+  );
+  background-size: 220% 220%;
+  background-position: 0% 0%;
+  transition: opacity 0.4s ease, background-position 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: inherit;
+}
+
+.systems-grid .system-card:hover {
+  border-color: #38bdf8;
+  box-shadow: 0 20px 45px rgba(23, 74, 184, 0.22), 0 0 24px rgba(56, 189, 248, 0.25);
+}
+
+.systems-grid .system-card:hover::after {
+  opacity: 1;
+  background-position: 100% 100%;
+}
+
+.systems-grid .system-card .system-card-img-wrap {
+  overflow: hidden;
+}
+
+.systems-grid .system-card .system-card-img-wrap img {
+  transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  will-change: transform;
+}
+
+.systems-grid .system-card:hover .system-card-img-wrap img {
+  transform: scale(1.10) !important;
 }
 
 /* Staggered timing for Divisions left & right columns */
