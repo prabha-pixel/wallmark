@@ -23,7 +23,8 @@ function initMobileNav() {
   const navMenu = document.querySelector('.nav-menu');
 
   if (toggleBtn && navMenu) {
-    toggleBtn.addEventListener('click', () => {
+    toggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
       navMenu.classList.toggle('open');
       const isExpanded = navMenu.classList.contains('open');
       toggleBtn.setAttribute('aria-expanded', isExpanded);

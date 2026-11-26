@@ -4359,10 +4359,14 @@ html, body {
 section,
 main,
 .hero,
-.site-header,
 .site-footer {
   width: 100%;
   overflow-x: clip;
+}
+
+.site-header {
+  width: 100%;
+  overflow: visible !important;
 }
 
 @media (max-width: 768px) {
@@ -4899,6 +4903,7 @@ main,
 
   .divisions-grid,
   .why-grid,
+  .process-grid,
   .systems-grid,
   .division-overview-grid,
   .drivers-grid,
@@ -4909,6 +4914,36 @@ main,
   .footer-grid {
     grid-template-columns: 1fr !important;
     gap: 18px !important;
+  }
+
+  .process-card,
+  .why-card,
+  .division-card {
+    aspect-ratio: auto !important;
+    min-height: auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .mobile-toggle {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    position: relative !important;
+    z-index: 10002 !important;
+    cursor: pointer !important;
+    touch-action: manipulation !important;
+  }
+
+  .nav-menu {
+    z-index: 9999 !important;
+    display: flex !important;
+  }
+
+  .nav-menu.open {
+    left: 0 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
   }
 
   .division-card {
