@@ -4500,3 +4500,56 @@ main,
   }
 }
 
+/* =============================================================
+   OVERVIEW SPLIT GRID: BIGGER IMAGE + PARALLEL CERTIFIED BADGE
+============================================================== */
+.overview-split-grid {
+  grid-template-columns: 0.88fr 1.12fr !important;
+  align-items: stretch !important;
+  gap: 42px !important;
+}
+
+.overview-col-left,
+.overview-col-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.overview-image-wrap {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 16px 36px rgba(11, 30, 54, 0.14);
+  border: 4px solid #ffffff;
+  background: #ffffff;
+  flex: 1;
+}
+
+.overview-col-right .overview-floating-badge {
+  margin-top: 16px;
+}
+
+@media (max-width: 991px) {
+  .overview-split-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .overview-image-wrap img {
+    min-height: 240px !important;
+    height: auto !important;
+  }
+}
+
+/* Staggered timing for Divisions left & right columns */
+.divisions-grid .division-card:nth-child(1),
+.divisions-grid .division-card:nth-child(2) {
+  transition-delay: 0.05s;
+}
+.divisions-grid .division-card:nth-child(3),
+.divisions-grid .division-card:nth-child(4) {
+  transition-delay: 0.16s;
+}
+.divisions-grid .division-card:nth-child(5),
+.divisions-grid .division-card:nth-child(6) {
+  transition-delay: 0.27s;
+}
+

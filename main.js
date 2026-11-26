@@ -860,15 +860,17 @@ function initWallmarkLiveBoxAnimations() {
       rootMargin: '0px 0px -30px 0px'
     });
 
-    revealTargets.forEach(el => rvObserver.observe(el));
+    revealTargets.forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight * 0.95) {
+        el.classList.add('in');
+      } else {
+        rvObserver.observe(el);
+      }
+    });
   } else {
     revealTargets.forEach(el => el.classList.add('in'));
   }
-
-  // Fallback so boxes never stay hidden
-  setTimeout(() => {
-    revealTargets.forEach(el => el.classList.add('in'));
-  }, 1800);
 
   // 3D Tilt & Radial Glare (Desktop non-touch & non-reduced-motion)
   const isTouch = window.matchMedia('(pointer: coarse)').matches;
