@@ -4591,12 +4591,12 @@ main,
 }
 
 /* =============================================================
-   OVERVIEW SPLIT GRID: EVEN SMALLER SITE-ERECTION IMAGE + PARALLEL BADGE
+   OVERVIEW SPLIT GRID: FULL MARKED AREA IMAGE + PARALLEL BADGE
 ============================================================== */
 .overview-split-grid {
-  grid-template-columns: 1.18fr 0.82fr !important;
+  grid-template-columns: 1fr 1.05fr !important;
   align-items: stretch !important;
-  gap: 40px !important;
+  gap: 36px !important;
 }
 
 .overview-col-left,
@@ -4612,14 +4612,15 @@ main,
   box-shadow: 0 16px 36px rgba(11, 30, 54, 0.14);
   border: 4px solid #ffffff;
   background: #ffffff;
-  flex: 0 0 auto;
+  flex: 1;
+  display: flex;
 }
 
 .overview-image-wrap img {
   width: 100%;
-  height: auto !important;
-  max-height: none !important;
-  min-height: 0 !important;
+  height: 100% !important;
+  min-height: 290px !important;
+  object-fit: cover;
   display: block;
 }
 
@@ -4631,8 +4632,12 @@ main,
   .overview-split-grid {
     grid-template-columns: 1fr !important;
   }
+  .overview-image-wrap {
+    flex: 0 0 auto;
+  }
   .overview-image-wrap img {
     height: auto !important;
+    min-height: 220px !important;
   }
 }
 
@@ -4818,5 +4823,153 @@ main,
 .divisions-grid .division-card:nth-child(5),
 .divisions-grid .division-card:nth-child(6) {
   transition-delay: 0.27s;
+}
+
+/* =============================================================
+   PROPER MOBILE WEBSITE: RESPONSIVE & JUSTIFIED LAYOUT (<= 768px)
+============================================================== */
+@media (max-width: 768px) {
+  .container,
+  .nav-container {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  .hero {
+    padding: 55px 0 60px !important;
+    text-align: left !important;
+  }
+
+  .hero h1 {
+    font-size: 1.85rem !important;
+    line-height: 1.25 !important;
+  }
+
+  .hero-badge {
+    font-size: 0.72rem !important;
+    padding: 6px 12px !important;
+    line-height: 1.4 !important;
+  }
+
+  .hero-subtext,
+  .page-hero p,
+  p,
+  .why-card p,
+  .division-card p,
+  .system-card-desc,
+  .driver-card p,
+  .roadmap-desc {
+    text-align: justify !important;
+    text-justify: inter-word !important;
+  }
+
+  .hero-ctas {
+    flex-direction: column !important;
+    width: 100% !important;
+    gap: 12px !important;
+  }
+
+  .hero-ctas .btn-pill-white,
+  .hero-ctas .btn-pill-outline {
+    width: 100% !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+
+  .hero-stats {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 14px !important;
+    margin-top: 32px !important;
+  }
+
+  .page-hero {
+    padding: 45px 0 50px !important;
+  }
+
+  .page-hero h1 {
+    font-size: 1.75rem !important;
+    line-height: 1.25 !important;
+  }
+
+  .section-header h2,
+  h2 {
+    font-size: 1.65rem !important;
+    line-height: 1.3 !important;
+  }
+
+  .divisions-grid,
+  .why-grid,
+  .systems-grid,
+  .division-overview-grid,
+  .drivers-grid,
+  .responsive-four-col,
+  .responsive-three-col,
+  .responsive-two-col,
+  .contact-grid,
+  .footer-grid {
+    grid-template-columns: 1fr !important;
+    gap: 18px !important;
+  }
+
+  .division-card {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+    padding: 20px 18px !important;
+  }
+
+  .division-col-left {
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 12px !important;
+    text-align: left !important;
+  }
+
+  .division-col-left br {
+    display: none;
+  }
+
+  .division-col-right {
+    flex-direction: row !important;
+    justify-content: flex-start !important;
+    gap: 8px !important;
+    border-top: 1px solid #f1f5f9;
+    padding-top: 10px;
+  }
+
+  .division-col-right br {
+    display: none;
+  }
+
+  .market-stats-strip {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 18px !important;
+    padding: 26px 18px !important;
+  }
+
+  .site-header-logo {
+    height: 48px !important;
+    max-width: 190px !important;
+  }
+
+  .header-actions .quote-btn {
+    display: none !important;
+  }
+
+  .footer-social-links {
+    justify-content: flex-start !important;
+  }
+
+  .footer-bottom {
+    flex-direction: column !important;
+    text-align: center !important;
+    gap: 12px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-stats,
+  .market-stats-strip {
+    grid-template-columns: 1fr !important;
+  }
 }
 
