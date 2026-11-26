@@ -4448,10 +4448,86 @@ main,
   will-change: opacity, transform;
 }
 
+[data-rv="up"] {
+  opacity: 0;
+  transform: translate3d(0, 26px, 0);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+[data-rv="fade"] {
+  opacity: 0;
+  transform: translate3d(0, 14px, 0);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
 [data-rv].in {
   opacity: 1;
   transform: translateZ(0) scale(1);
 }
+
+/* =============================================================
+   HERO TEXT REVEAL & FADE-IN-UP (ALL PAGES)
+============================================================== */
+.hero .hero-badge,
+.page-hero .page-hero-badge {
+  animation: heroTextRevealUp 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.05s both;
+}
+
+.page-hero h1 {
+  animation: heroTextRevealUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.12s both;
+}
+
+.page-hero h2,
+.page-hero p {
+  animation: heroTextRevealUp 0.95s cubic-bezier(0.16, 1, 0.3, 1) 0.24s both;
+}
+
+.hero .hero-ctas {
+  animation: heroTextRevealUp 0.95s cubic-bezier(0.16, 1, 0.3, 1) 0.36s both;
+}
+
+.hero .hero-stats .stat-item {
+  animation: heroTextRevealUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.hero .hero-stats .stat-item:nth-child(1) { animation-delay: 0.42s; }
+.hero .hero-stats .stat-item:nth-child(2) { animation-delay: 0.50s; }
+.hero .hero-stats .stat-item:nth-child(3) { animation-delay: 0.58s; }
+.hero .hero-stats .stat-item:nth-child(4) { animation-delay: 0.66s; }
+
+/* =============================================================
+   PORTFOLIO & ARCHITECTURAL IMAGE REVEAL + SUBTLE HOVER ZOOM
+============================================================== */
+.overview-image-wrap img,
+.division-overview-img-wrap img,
+.system-card-img-wrap img,
+.img-hover-zoom img {
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.overview-image-wrap:hover img,
+.division-overview-card:hover .division-overview-img-wrap img,
+.system-card:hover .system-card-img-wrap img,
+.img-hover-zoom:hover img {
+  transform: scale(1.045);
+}
+
+/* =============================================================
+   STAGGERED DELAYS FOR WHY CHOOSE US & SERVICES CARDS
+============================================================== */
+.why-grid .why-card:nth-child(1) { transition-delay: 0.04s; }
+.why-grid .why-card:nth-child(2) { transition-delay: 0.12s; }
+.why-grid .why-card:nth-child(3) { transition-delay: 0.20s; }
+.why-grid .why-card:nth-child(4) { transition-delay: 0.28s; }
+
+.division-overview-grid .division-overview-card:nth-child(3n+1),
+.systems-grid .system-card:nth-child(3n+1) { transition-delay: 0.03s; }
+.division-overview-grid .division-overview-card:nth-child(3n+2),
+.systems-grid .system-card:nth-child(3n+2) { transition-delay: 0.10s; }
+.division-overview-grid .division-overview-card:nth-child(3n),
+.systems-grid .system-card:nth-child(3n) { transition-delay: 0.17s; }
 
 /* 3D Tilt Card & Glare Overlay (exact match to wallmarkfacades.com) */
 .tilt-3d {
@@ -4490,9 +4566,23 @@ main,
   [data-rv],
   [data-rv="left"],
   [data-rv="right"],
-  [data-rv="scale"] {
+  [data-rv="scale"],
+  [data-rv="up"],
+  [data-rv="fade"],
+  .text-reveal-heading,
+  .text-reveal-paragraph,
+  .hero .hero-badge,
+  .hero .hero-ctas,
+  .hero .hero-stats .stat-item,
+  .page-hero .page-hero-badge,
+  .page-hero h1,
+  .page-hero h2,
+  .page-hero p,
+  .driver-card {
     opacity: 1 !important;
     transform: none !important;
+    filter: none !important;
+    animation: none !important;
     transition: none !important;
   }
   .tilt-3d {

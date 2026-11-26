@@ -820,32 +820,43 @@ function initCountUpStats() {
    - 3D mouse-tracking tilt + radial glare overlay (.tilt-3d)
 ============================================================== */
 function initWallmarkLiveBoxAnimations() {
-  const gridSelectors = [
-    '.divisions-grid',
-    '.why-grid',
-    '.drivers-grid',
-    '.division-overview-grid',
-    '.systems-grid',
-    '.responsive-four-col',
-    '.responsive-three-col',
-    '.responsive-two-col'
-  ];
-
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const revealTargets = [];
 
-  document.querySelectorAll(gridSelectors.join(', ')).forEach((grid) => {
-    const boxes = Array.from(grid.children).filter(el => {
-      const tag = el.tagName.toLowerCase();
-      return tag === 'div' || tag === 'a' || tag === 'article';
-    });
-
-    boxes.forEach((box, idx) => {
-      if (!box.hasAttribute('data-rv')) {
-        box.setAttribute('data-rv', idx % 2 === 0 ? 'left' : 'right');
+  const assignReveal = (selector, getDir) => {
+    document.querySelectorAll(selector).forEach((el, idx) => {
+      if (!el.hasAttribute('data-rv')) {
+        el.setAttribute('data-rv', typeof getDir === 'function' ? getDir(idx, el) : getDir);
       }
-      revealTargets.push(box);
+      revealTargets.push(el);
     });
-  });
+  };
+
+  // 1. About & Overview: opposite-direction slide-in
+  assignReveal('.overview-split-grid > div, .page-hero-split-grid > div, .roadmap-rows > .roadmap-row', (idx) => (idx % 2 === 0 ? 'left' : 'right'));
+
+  // 2. Home Six Divisions: opposite-direction slide-in (3 left, 3 right)
+  assignReveal('.divisions-grid .division-card', (idx) => (idx % 2 === 0 ? 'left' : 'right'));
+
+  // 3. Services: staggered fade-in-up cards
+  assignReveal('.division-overview-grid .division-overview-card, .systems-grid .system-card', 'up');
+
+  // 4. Why Choose Us: staggered fade-in
+  assignReveal('.why-grid .why-card', 'fade');
+
+  // 5. Portfolio / Architectural Images: image reveal + hover zoom
+  assignReveal('.overview-image-wrap', 'scale');
+
+  // 6. Contact & FAQ: subtle fade-in-up
+  assignReveal('.contact-info-card, .contact-form-container, .faq-item, .about-cta-box, .section-header', 'up');
+
+  // 7. Other multi-column grids (drivers, partners, purpose): opposite-direction
+  assignReveal('.drivers-grid > div, .responsive-four-col > div, .responsive-three-col > div, .responsive-two-col > div', (idx) => (idx % 2 === 0 ? 'left' : 'right'));
+
+  if (reducedMotion) {
+    revealTargets.forEach(el => el.classList.add('in'));
+    return;
+  }
 
   if ('IntersectionObserver' in window && revealTargets.length > 0) {
     const rvObserver = new IntersectionObserver((entries, obs) => {
@@ -856,8 +867,8 @@ function initWallmarkLiveBoxAnimations() {
         }
       });
     }, {
-      threshold: 0.1,
-      rootMargin: '0px 0px -30px 0px'
+      threshold: 0.08,
+      rootMargin: '0px 0px -25px 0px'
     });
 
     revealTargets.forEach(el => {
@@ -872,10 +883,9 @@ function initWallmarkLiveBoxAnimations() {
     revealTargets.forEach(el => el.classList.add('in'));
   }
 
-  // 3D Tilt & Radial Glare (Desktop non-touch & non-reduced-motion)
+  // 3D Tilt & Radial Glare (Desktop non-touch only)
   const isTouch = window.matchMedia('(pointer: coarse)').matches;
-  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (isTouch || reducedMotion) return;
+  if (isTouch) return;
 
   const tiltBoxes = document.querySelectorAll('.division-card, .why-card, .driver-card, .division-overview-card, .system-card, .partner-card');
   const maxTilt = 10;
